@@ -1,0 +1,44 @@
+@startuml
+
+package "Structures" {
+  class Tetromino {
+    + int x
+    + int y
+    + int size
+    + int shape[4][4]
+    + int color_pair
+  }
+}
+
+package "Functions" {
+  class GameLogic {
+    + int calculateSpeed(int level)
+    + int checkCollision()
+    + void clearLines()
+    + void mergeTetromino()
+    + void spawnTetromino()
+  }
+
+  class Rendering {
+    + void drawField()
+    + void drawTetromino()
+    + void drawNextTetromino()
+    + void renderGame()
+  }
+
+  class InputHandling {
+    + void handleInput()
+    + int handleQuit(int ch)
+  }
+
+  class SystemSetup {
+    + void setupTerminal()
+    + void setupColors()
+  }
+}
+
+GameLogic ..> Tetromino : uses
+Rendering ..> Tetromino : draws
+InputHandling ..> SystemSetup : depends
+
+@enduml
